@@ -1,5 +1,5 @@
 
-![效果图](http://upload-images.jianshu.io/upload_images/1505288-93870e8644cd442d.gif?imageMogr2/auto-orient/strip)
+![效果图](https://github.com/pengshengsongcode/CycleImageView/blob/master/123.gif)
 
 首先感谢右侧链接代码中的图片素材😁~[大神使用UICollectionView实现的轮播图](http://www.code4app.com/forum.php?mod=viewthread&tid=11742&extra=page%3D1)
 
