@@ -39,7 +39,7 @@
 ###UISwipeGestureRecognizeror（清扫手势）相关代码
 
 > 一些懒加载，注释已经标明清楚
-
+```
     var selectedIndex = 0//当前图片
    
     lazy var imageView: UIImageView = {//展示image
@@ -87,7 +87,9 @@
         
         return arr
     }()
+```
 
+```
 > 
 
     override func viewDidLoad() {
@@ -117,8 +119,9 @@
         
     }
 
+```
 > 从左往右滑动的响应事件
-
+```
     func tapRightAction() {//从左往右滑动
         
         //使用CA转场动画来改变方式
@@ -139,8 +142,11 @@
         imageView.layer.add(transition, forKey: "right")
         
     }
+```
+
 > 从右往左滑动的响应事件
 
+```
     func tapRightAction() {//从左往右滑动
 
         //使用CA转场动画来改变方式
@@ -161,6 +167,8 @@
         imageView.layer.add(transition, forKey: "left")
                 
     }
+
+```
 
 Touches基本同理，再此不一一赘述了
 
