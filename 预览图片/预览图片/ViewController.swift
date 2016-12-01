@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         
 
         
-        imageView.frame = CGRect(x: 0, y: 0, width: screen_width, height: screen_height)
+        imageView.frame = CGRect(x: 0, y: 0, width: screen_width, height: 300)
         
         imageView.isUserInteractionEnabled = true
         
