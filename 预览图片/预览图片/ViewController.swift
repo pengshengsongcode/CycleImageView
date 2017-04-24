@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         
         imageView.frame = CGRect(x: 0, y: 0, width: screen_width, height: screen_height)
         
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        
         imageView.isUserInteractionEnabled = true
         
         imageView.addGestureRecognizer(swipeLeft)
