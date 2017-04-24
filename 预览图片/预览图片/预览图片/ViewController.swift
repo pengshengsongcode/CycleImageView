@@ -13,12 +13,52 @@ let screen_height = UIScreen.main.bounds.height
 
 class ViewController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: screen_width, height: screen_height)
+        
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.addGestureRecognizer(swipeLeft)
+        
+        imageView.addGestureRecognizer(swipeRight)
+        
+        imageView.addGestureRecognizer(pinch)
+        
+        let pageSize = page.size(forNumberOfPages: dataList.count)
+        
+        page.frame = CGRect(x: 0, y: imageView.frame.maxY - pageSize.height, width: pageSize.width, height: pageSize.height)
+        
+        page.center.x = imageView.frame.width / 2
+        
+        scrollView.frame = imageView.frame
+        
+        scrollView.contentSize = imageView.frame.size;
+        
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(imageView)
+        
+        view.addSubview(page)
+        
+    }
+
+    
     var selectedIndex = 0//当前图片
     
     lazy var imageView: UIImageView = {//展示image
         let imageview = UIImageView()
         imageview.image = UIImage(named: "\(self.selectedIndex)")
         return imageview
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        
+        return scrollView
     }()
     
     lazy var swipeRight: UISwipeGestureRecognizer = {//从左往右滑手势
@@ -33,6 +73,13 @@ class ViewController: UIViewController {
         
         swipe.direction = .left
         return swipe
+    }()
+    
+    lazy var pinch: UIPinchGestureRecognizer = {
+        
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchAction))
+        
+        return pinch
     }()
     
     lazy var page: UIPageControl = {
@@ -60,31 +107,6 @@ class ViewController: UIViewController {
         
         return arr
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: screen_width, height: 300)
-        
-        imageView.isUserInteractionEnabled = true
-        
-        imageView.addGestureRecognizer(swipeLeft)
-        
-        imageView.addGestureRecognizer(swipeRight)
-        
-        let pageSize = page.size(forNumberOfPages: dataList.count)
-        
-        page.frame = CGRect(x: 0, y: imageView.frame.maxY - pageSize.height, width: pageSize.width, height: pageSize.height)
-        
-        page.center.x = imageView.frame.width / 2
-        
-        view.addSubview(imageView)
-        
-        view.addSubview(page)
-        
-    }
     
     func tapRightAction() {//从左往右滑动
         
@@ -125,6 +147,15 @@ class ViewController: UIViewController {
         imageView.layer.add(transition, forKey: "left")
         
         
+    }
+    
+    func pinchAction(sender :UIPinchGestureRecognizer) {
+        
+        sender.view?.transform = sender.view!.transform.scaledBy(x: sender.scale, y: sender.scale)
+        
+        scrollView.contentSize = sender.view!.frame.size
+        
+        sender.scale = 1;
     }
     
 }
